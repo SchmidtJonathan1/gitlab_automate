@@ -1,0 +1,10 @@
+---
+# /roles/gitlab-install/tasks/gitlab-install.yml
+- name: install gitlab finally ;)
+  dnf:
+    name: gitlab-ee
+    state: latest
+    
+- name: gitlab restart service
+  shell: gitlab-ctl restart
+...

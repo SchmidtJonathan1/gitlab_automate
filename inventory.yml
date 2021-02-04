@@ -1,0 +1,10 @@
+---
+git:
+  hosts:
+    git1:
+      ansible_host: 192.168.58.143
+  vars:
+    ansible_user: jonschmi
+    ansible_password: Test1234!
+    ansible_sudo_password: Test1234!
+...

@@ -1,0 +1,17 @@
+---
+# /roles/gitlab-install/tasks/prequsites-install.yml
+- name: Install dependencies
+  ansible.builtin.dnf:
+    name: 
+      - curl
+      - policycoreutils
+      - openssh-server
+      - perl
+    state: latest
+    
+- name: ssh service enabled
+  ansible.builtin.service:
+    name: sshd
+    enabled: yes
+    state: started
+...

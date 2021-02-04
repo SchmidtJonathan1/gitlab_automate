@@ -1,0 +1,10 @@
+---
+# /roles/gitlab-install/tasks/ssl-install.yml
+- name: Generate a Self Signed OpenSSL certificate
+  community.crypto.x509_certificate:
+    path: /tmp/crt/ansible.com.crt
+    privatekey_path: /tmp/crt/ansible.com.key
+    #csr_path: /etc/ssl/csr/ansible.com.csr
+    provider: selfsigned
+#shell: openssl req -x509 -nodes -days 356 -newkey rsa:2048 -keyout /etc/gitlab/ssl/192.168.58.143.key -out /etc/gitlab/ssl/192.168.58.143.crt
+...

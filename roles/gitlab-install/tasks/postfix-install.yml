@@ -1,0 +1,14 @@
+---
+# /roles/gitlab-install/tasks/postfix-install.yml
+- name: Install dependencies
+  ansible.builtin.dnf:
+    name: 
+      - postfix
+    state: latest
+    
+- name: postfix service enabled
+  ansible.builtin.service:
+    name: postfix
+    enabled: yes
+    state: started
+...

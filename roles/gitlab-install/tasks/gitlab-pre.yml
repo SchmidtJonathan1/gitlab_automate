@@ -1,0 +1,22 @@
+---
+# /roles/gitlab-install/tasks/gitlab-pre.yml
+- name: download shellscript
+  get_url: 
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh
+    dest: /tmp/gitlab-install.sh
+    mode: "0777"
+  register: downloadResult
+
+- name: run installer
+  command: bash /tmp/gitlab-install.sh
+  when: downloadResult.changed
+
+- name: create dir
+  file:
+    path: /etc/gitlab 
+    state: directory
+    mode: 0755
+
+- name: create config
+  shell: printf "external_url \"https://192.168.58.143\"\nnginx[\'redirect_http_to_https_port\'] = 80\nletsencrypt[\'enable\'] = false" > /etc/gitlab/gitlab.rb
+...

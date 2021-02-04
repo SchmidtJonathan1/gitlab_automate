@@ -1,0 +1,23 @@
+---
+# /roles/gitlab-install/tasks/ssl-install.yml
+- name: Create self sign certifcate
+  vars:
+    - server_hostname: 192.168.58.143
+    - key_size: 2048
+    - passphrase: # Set if you want passphrase
+    - key_type: RSA
+  tasks:
+    - name: Create cert .key
+      openssl_privatekey:
+        path: /etc/gitlab/{{ server_hostname }}_privkey.key
+        size: "{{ key_size }}"
+        type: "{{ key_type }}"
+
+    - name: Create cert .crt
+      openssl_privatekey:
+        path: /etc/gitlab/{{ server_hostname }}.crt
+        size: "{{ key_size }}"
+        type: "{{ key_type }}"
+
+#shell: openssl req -x509 -nodes -days 356 -newkey rsa:2048 -keyout /etc/gitlab/ssl/192.168.58.143.key -out /etc/gitlab/ssl/192.168.58.143.crt
+...

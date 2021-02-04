@@ -1,0 +1,18 @@
+---
+# /roles/gitlab-install/tasks/firewall-configure.yml
+- name: open ports in firewall
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop:
+  - http
+  - https
+
+- name: firewallRestart
+  service:
+    state: restarted
+    name: firewalld
+
+  #notify: firewallRestart
+...
