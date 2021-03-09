@@ -1,0 +1,3 @@
+cert_dir: /etc/gitlab/ssl/
+
+private_dir: /etc/gitlab/ssl/

@@ -14,5 +14,5 @@
     state: restarted
     name: firewalld
 
-  #notify: firewallRestart
+  notify: firewallRestart
 ...

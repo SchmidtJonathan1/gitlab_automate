@@ -3,7 +3,7 @@
 - name: Install GitLab
   hosts: git
   become: yes
-#  become_method: sudo
+  become_method: sudo
   roles:
     - gitlab-install
 ...

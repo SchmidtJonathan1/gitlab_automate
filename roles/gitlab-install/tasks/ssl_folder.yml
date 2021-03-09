@@ -1,4 +1,5 @@
 ---
+# /roles/ssl_create/tasks/ssl_folder.yml
 - name: create directories required for this role
   file:
     path: "{{ item.path }}"
@@ -8,5 +9,5 @@
     recurse: no
     mode: "{{ item.mode }}"
   loop:
-  - { path: "{{ privateDir }}", mode: "700" }
-  - { path: "{{ certDir }}", mode: "710" }
+  - { path: "{{ private_dir }}", mode: "700" }
+  - { path: "{{ cert_dir }}", mode: "710" }

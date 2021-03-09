@@ -1,25 +1,18 @@
 ---
+# /roles/ssl_create/tasks/ssl.yml
 - name: check if certificate is already present
   stat:
-    path: "{{ certDir }}{{ inventory_hostname }}.crt"
+    path: "{{ cert_dir }}{{ ansible_host }}.crt"
   register: cert_exists
 
 - name: create self-signed OpenSSL-certificate csr & key
-  command: openssl req -new -newkey rsa:4096 -nodes -keyout "{{ inventory_hostname }}.key" -out "{{ inventory_hostname }}.csr" -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN={{ hostvars[inventory_hostname].ansible_host }}"
+  command: openssl req -new -newkey rsa:4096 -nodes -keyout "{{ ansible_host }}.key" -out "{{ ansible_host }}.csr" -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN={{ ansible_host }}"
   args:
-    chdir: "{{ privateDir }}"
+    chdir: "{{ private_dir }}"
   when: not cert_exists.stat.exists
 
 - name: create self-signed OpenSSL-certificate
-  command: openssl x509 -req -days 3650 -in "{{ privateDir }}{{ inventory_hostname }}.csr" -signkey "{{ privateDir }}{{ inventory_hostname }}.key" -out "{{ inventory_hostname }}.crt"
+  command: openssl x509 -req -days 3650 -in "{{ private_dir }}{{ ansible_host }}.csr" -signkey "{{ private_dir }}{{ ansible_host }}.key" -out "{{ ansible_host }}.crt"
   args:
-    chdir: "{{ certDir }}"
+    chdir: "{{ cert_dir }}"
   when: not cert_exists.stat.exists
-
-- name: download certificate from server to tmp
-  fetch:
-    src: "{{ item }}"
-    dest: /tmp/
-    flat: yes
-  loop: 
-  - "{{ certDir }}{{ inventory_hostname }}.crt"

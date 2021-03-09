@@ -4,6 +4,7 @@
 - include_tasks: firewall-configure.yml
 - include_tasks: postfix-install.yml
 - include_tasks: gitlab-pre.yml
-#- include_tasks: ssl-create.yml
+- include_tasks: ssl_folder.yml
+- include_tasks: ssl.yml
 - include_tasks: gitlab-install.yml
 ...

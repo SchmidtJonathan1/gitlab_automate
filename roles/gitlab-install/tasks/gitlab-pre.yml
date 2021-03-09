@@ -18,5 +18,5 @@
     mode: 0755
 
 - name: create config
-  shell: printf "external_url \"https://192.168.58.143\"\nnginx[\'redirect_http_to_https_port\'] = 80\nletsencrypt[\'enable\'] = false" > /etc/gitlab/gitlab.rb
+  shell: printf "external_url \"https://192.168.58.135\"\nnginx[\'redirect_http_to_https_port\'] = 80\nletsencrypt[\'enable\'] = false" > /etc/gitlab/gitlab.rb
 ...
