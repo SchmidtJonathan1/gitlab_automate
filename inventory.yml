@@ -1,10 +1,4 @@
----
-git:
-  hosts:
-    git1:
-      ansible_host: 192.168.58.135
-  vars:
-    ansible_user: jonschmi
-    ansible_password: Test1234!
-    ansible_sudo_password: Test1234!
-...
+# /inventory.yaml
+#Add your ansible host, user and password
+[git]
+git1 ansible_host= ansible_user= ansible_password= ansible_port=22
